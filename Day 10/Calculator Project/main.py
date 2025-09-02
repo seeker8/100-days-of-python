@@ -27,4 +27,11 @@ operations = {
 }
 
 # TODO use the dictionary operations to perform the calculations. Multiply 4 * 8 using the dictionary
-print(operations["*"](4,8))
+# print(operations["*"](4,8))
+
+# TODO calculator
+first_operand = int(input("Enter first number: "))
+operator = input("Enter operator +, -, *, /: ")
+second_operand = int(input("Enter second number: "))
+
+print(operations[operator](first_operand, second_operand))
