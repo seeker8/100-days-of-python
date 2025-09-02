@@ -25,3 +25,6 @@ operations = {
     "*": multiply,
     "/": divide
 }
+
+# TODO use the dictionary operations to perform the calculations. Multiply 4 * 8 using the dictionary
+print(operations["*"](4,8))
