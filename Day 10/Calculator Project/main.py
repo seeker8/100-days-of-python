@@ -30,8 +30,24 @@ operations = {
 # print(operations["*"](4,8))
 
 # TODO calculator
-first_operand = int(input("Enter first number: "))
-operator = input("Enter operator +, -, *, /: ")
-second_operand = int(input("Enter second number: "))
+should_user_previous_result = False
+should_continue = True
+while should_continue:
+    first_operand = 0
+    if not should_user_previous_result:
+        first_operand = int(input("Enter first number: "))
+    operator = input("Enter operator +, -, *, /: ")
+    second_operand = int(input("Enter second number: "))
 
-print(operations[operator](first_operand, second_operand))
+    result = operations[operator](first_operand, second_operand)
+    print(f"{first_operand} {operator} {second_operand} = {result}")
+    continue_running = input("Would you like to continue? (y/n): ")
+    if continue_running == "n":
+        should_continue = False
+        continue
+    user_previous_result = input("Would you like to continue working with previous result? (y/n): ")
+    if user_previous_result == "y":
+        should_user_previous_result = True
+        first_operand = result
+    else:
+        should_user_previous_result = False
