@@ -35,9 +35,9 @@ should_continue = True
 while should_continue:
     first_operand = 0
     if not should_user_previous_result:
-        first_operand = int(input("Enter first number: "))
+        first_operand = float(input("Enter first number: "))
     operator = input("Enter operator +, -, *, /: ")
-    second_operand = int(input("Enter second number: "))
+    second_operand = float(input("Enter second number: "))
 
     result = operations[operator](first_operand, second_operand)
     print(f"{first_operand} {operator} {second_operand} = {result}")
