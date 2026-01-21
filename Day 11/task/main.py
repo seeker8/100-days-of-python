@@ -51,31 +51,19 @@ if __name__ == "__main__":
                     computer_cards.append(random.choice(cards))
                     computer_score = calculate_score(computer_cards)
 
+        print_final_hands(user_score, computer_score, user_cards, computer_cards)
         if user_score == 21 and len(user_cards) == 2:
-            print_final_hands(user_score, computer_score, user_cards, computer_cards)
             print("Win with a Blackjack!")
-            start_game = input(start_game_prompt)
         elif user_score == 21:
-            print_final_hands(user_score, computer_score, user_cards, computer_cards)
             print("You Win")
-            start_game = input(start_game_prompt)
         elif computer_score > 21:
-            print_final_hands(user_score, computer_score, computer_cards, computer_cards)
             print("Opponent went over. You win")
-            start_game = input(start_game_prompt)
         elif user_score > 21:
-            print_final_hands(user_score,computer_score, user_cards, computer_cards)
             print("You went over. You lose")
-            start_game = input(start_game_prompt)
         elif 21 - user_score < 21 - computer_score:
-            print_final_hands(user_score, computer_score, user_cards, computer_cards)
             print("You win.")
-            start_game = input(start_game_prompt)
         elif user_score == computer_score:
-            print_final_hands(user_score, computer_score, user_cards, computer_cards)
             print("It's a draw.")
-            start_game = input(start_game_prompt)
         else:
-            print_final_hands(user_score, computer_score, user_cards, computer_cards)
             print("You lose.")
-            start_game = input(start_game_prompt)
+        start_game = input(start_game_prompt)
