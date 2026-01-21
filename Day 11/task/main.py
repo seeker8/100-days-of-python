@@ -20,24 +20,24 @@ def print_final_hands(score, c_score, hand, computer_hand):
     print(final_score_message.format(user_score=score, user_cards=hand))
     print(final_computer_message.format(computer_cards=computer_hand, computer_score=c_score))
 
-def get_score(hand):
+def calculate_score(hand):
     aces = hand.count(11)
-    score = reduce(lambda x, y: x + y, hand)
+    score = sum(hand)
     tmp_score = 0
     if score > 21 and aces == 1:
         return score - 10
     elif score > 21 and aces > 1:
-        return score - len(aces) * 10
+        return score - aces * 10
     return score
 
 if __name__ == "__main__":
     start_game_prompt = "Do you want to play a game of Balckjack? Type 'y' or 'n': "
     start_game = input(start_game_prompt)
     while start_game == "y":
-        user_cards = [random.choice(cards) for i in range(2)]
+        user_cards = [random.choice(cards) for _ in range(2)]
         computer_cards = [random.choice(cards)]
-        computer_score = get_score(computer_cards)
-        user_score = get_score(user_cards)
+        computer_score = calculate_score(computer_cards)
+        user_score = calculate_score(user_cards)
         print(logo)
         print_hands(user_score, user_cards, computer_cards)
         keep_playing = 'y'
@@ -45,12 +45,12 @@ if __name__ == "__main__":
             keep_playing = input(prompt_message)
             if keep_playing == "y":
                 user_cards.append(random.choice(cards))
-                user_score = get_score(user_cards)
+                user_score = calculate_score(user_cards)
                 print_hands(user_score, user_cards, computer_cards)
             else:
                 while 18 > computer_score < 21:
                     computer_cards.append(random.choice(cards))
-                    computer_score = get_score(computer_cards)
+                    computer_score = calculate_score(computer_cards)
 
         if user_score == 21:
             print_final_hands(user_score, computer_score, user_cards, computer_cards)
@@ -67,6 +67,10 @@ if __name__ == "__main__":
         elif 21 - user_score < 21 - computer_score:
             print_final_hands(user_score, computer_score, user_cards, computer_cards)
             print("You win.")
+            start_game = input(start_game_prompt)
+        elif(user_score == computer_score):
+            print_final_hands(user_score, computer_score, user_cards, computer_cards)
+            print("It's a draw.")
             start_game = input(start_game_prompt)
         else:
             print_final_hands(user_score, computer_score, user_cards, computer_cards)
