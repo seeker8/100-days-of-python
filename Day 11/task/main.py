@@ -23,7 +23,6 @@ def print_final_hands(score, c_score, hand, computer_hand):
 def calculate_score(hand):
     aces = hand.count(11)
     score = sum(hand)
-    tmp_score = 0
     if score > 21 and aces == 1:
         return score - 10
     elif score > 21 and aces > 1:
@@ -52,9 +51,13 @@ if __name__ == "__main__":
                     computer_cards.append(random.choice(cards))
                     computer_score = calculate_score(computer_cards)
 
-        if user_score == 21:
+        if user_score == 21 and len(user_cards) == 2:
             print_final_hands(user_score, computer_score, user_cards, computer_cards)
             print("Win with a Blackjack!")
+            start_game = input(start_game_prompt)
+        elif user_score == 21:
+            print_final_hands(user_score, computer_score, user_cards, computer_cards)
+            print("You Win")
             start_game = input(start_game_prompt)
         elif computer_score > 21:
             print_final_hands(user_score, computer_score, computer_cards, computer_cards)
@@ -68,7 +71,7 @@ if __name__ == "__main__":
             print_final_hands(user_score, computer_score, user_cards, computer_cards)
             print("You win.")
             start_game = input(start_game_prompt)
-        elif(user_score == computer_score):
+        elif user_score == computer_score:
             print_final_hands(user_score, computer_score, user_cards, computer_cards)
             print("It's a draw.")
             start_game = input(start_game_prompt)
