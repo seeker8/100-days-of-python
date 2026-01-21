@@ -21,7 +21,14 @@ def print_final_hands(score, c_score, hand, computer_hand):
     print(final_computer_message.format(computer_cards=computer_hand, computer_score=c_score))
 
 def get_score(hand):
-    return reduce(lambda x, y: x + y, hand)
+    aces = hand.count(11)
+    score = reduce(lambda x, y: x + y, hand)
+    tmp_score = 0
+    if score > 21 and aces == 1:
+        return score - 10
+    elif score > 21 and aces > 1:
+        return score - len(aces) * 10
+    return score
 
 if __name__ == "__main__":
     start_game_prompt = "Do you want to play a game of Balckjack? Type 'y' or 'n': "
