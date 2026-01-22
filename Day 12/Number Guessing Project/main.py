@@ -14,7 +14,7 @@ def play(difficulty):
     print(f"You have {attempts} attempts remaining to guess the number.")
     # ask for a number while there are attempts left and the number hasn't been guessed
     guess = int(input("Make a guess: "))
-    while attempts > 0:
+    while attempts > 1:
         attempts -= 1
         # if number is guessed then show "You got it! The answer was [number]."
         if guess == number:
